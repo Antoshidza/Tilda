@@ -35,4 +35,12 @@
 .suggestion {
     color: rgb(255, 255, 255);
     font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.suggestion-selected {
+    background-color: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    -unity-font-style: bold;
 }
