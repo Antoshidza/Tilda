@@ -1,11 +1,12 @@
 using NUnit.Framework;
+using Tilda;
 
 public class CmdTest
 {
     [Test]
     public void InputHandleTest()
     {
-        var cmd = new Cmd.Cmd();
+        var cmd = new Cmd();
         var commandRan = false;
         cmd.AddCommand("test-command", input => commandRan = true);
         cmd.TryHandle("test-command");

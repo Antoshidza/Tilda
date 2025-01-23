@@ -2,7 +2,7 @@
     "name": "Cmd.Tests",
     "rootNamespace": "",
     "references": [
-        "Cmd",
+        "Tilda.Cmd",
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner"
     ],

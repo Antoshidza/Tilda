@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace Console
+namespace Tilda
 {
     public class Console
     {
         private readonly ConsoleUiView _view;
-        private readonly Cmd.Cmd _cmd = new();
+        private readonly Cmd _cmd = new();
 
         public event Action<string> Logged; 
 

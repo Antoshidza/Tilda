@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Console
+namespace Tilda
 {
     public class MonoConsole : MonoBehaviour
     {
@@ -10,7 +10,7 @@ namespace Console
 
         private void Start()
         {
-            _console = new Console(_view);
+            _console = new Tilda.Console(_view);
         }
     }
 }

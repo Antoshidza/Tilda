@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 // ReSharper disable PossibleMultipleEnumeration
 
-namespace Console
+namespace Tilda
 {
     public class ConsoleUiView : MonoBehaviour
     {

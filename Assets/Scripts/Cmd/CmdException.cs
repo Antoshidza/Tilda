@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Cmd
+namespace Tilda
 {
-    public class CmdException : Exception
+    internal class CmdException : Exception
     {
         public CmdException(string msg) : base(msg) { }
     }

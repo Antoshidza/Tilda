@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace Console
+namespace Tilda
 {
-    public static class ConsoleUtils
+    internal static class ConsoleUtils
     {
         public static string Colored(this string message, in Color color)
             => $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{message}</color>";
