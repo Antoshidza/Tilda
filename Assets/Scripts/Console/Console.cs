@@ -7,6 +7,16 @@ namespace Tilda
         private readonly ConsoleUiView _view;
         private readonly Cmd _cmd = new();
 
+        public bool Enabled
+        {
+            get => _view.IsVisible;
+            set
+            {
+                _view.IsVisible = value;
+                _view.enabled = value;
+            }
+        }
+
         public event Action<string> Logged; 
 
         public Console(ConsoleUiView view)

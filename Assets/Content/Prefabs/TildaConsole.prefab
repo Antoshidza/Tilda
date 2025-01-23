@@ -78,6 +78,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _view: {fileID: 5359087648337221587}
+  _showAtStart: 0
+  _onOffKey: 96
 --- !u!114 &5359087648337221587 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5645421361935570274, guid: 48b6f95058fba8844a4abbb3ce6d09e8, type: 3}

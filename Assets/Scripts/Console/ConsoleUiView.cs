@@ -22,7 +22,13 @@ namespace Tilda
         private int _restorePos;
         private int _suggestionsPos;
 
-        public IEnumerable<string> CommandNames; 
+        public IEnumerable<string> CommandNames;
+
+        public bool IsVisible
+        {
+            get => _document.rootVisualElement.visible;
+            set => _document.rootVisualElement.visible = value;
+        }
 
         public event Action<string> InputSubmitted;
 
