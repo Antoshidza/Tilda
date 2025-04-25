@@ -109,7 +109,7 @@ namespace Tilda
                 _restorePos = (_restorePos - 1 + _submitted.Count) % _submitted.Count;
                 _inputField.value = _submitted[^(_restorePos + 1)];
             }
-            else if (Input.anyKeyDown) 
+            else if (CheckAnyKey()) 
                 _restorePos = 0;
         }
 
@@ -152,7 +152,7 @@ namespace Tilda
                 _logsList.ScrollToItem(_logs.Count - 1);
         }
 
-        private bool CheckAnyKey()
+        private static bool CheckAnyKey()
         {
 #if ENABLE_INPUT_SYSTEM
             return UnityEngine.InputSystem.Keyboard.current.anyKey.wasPressedThisFrame;
@@ -161,7 +161,7 @@ namespace Tilda
 #endif
         }
 
-        private bool CheckGetKeyUp(KeyCode key)
+        private static bool CheckGetKeyUp(KeyCode key)
         {
 #if ENABLE_INPUT_SYSTEM
             switch (key)
@@ -175,7 +175,7 @@ namespace Tilda
 #endif
         }
         
-        private bool CheckGetKeyDown(KeyCode key)
+        private static bool CheckGetKeyDown(KeyCode key)
         {
 #if ENABLE_INPUT_SYSTEM
             switch (key)
