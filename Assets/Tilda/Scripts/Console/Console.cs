@@ -53,5 +53,8 @@ namespace Tilda
         }
 
         public void Clear() => _view.Clear();
+        
+        public void AddCommand(in string commandName, Action<string> handler, in string description = null) => 
+            _cmd.AddCommand(commandName, handler, description);
     }
 }
