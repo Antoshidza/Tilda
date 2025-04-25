@@ -1,0 +1,9 @@
+{
+  "name": "com.tonymax.tilda",
+  "displayName": "Tilda",
+  "version": "0.0.1",
+  "unity": "6000.0",
+  "description": "Minimal debug console for unity",
+  "keywords": ["Console", "Debug", "UI"],
+  "license": "MIT"
+}
