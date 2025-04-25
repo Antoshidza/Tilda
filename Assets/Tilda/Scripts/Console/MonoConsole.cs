@@ -10,7 +10,7 @@ namespace Tilda
 
         private Console _console;
 
-        private void Start()
+        private void Awake()
         {
             _console = new Console(_view)
             {

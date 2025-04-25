@@ -32,7 +32,7 @@ namespace Tilda
 
         public event Action<string> InputSubmitted;
 
-        private void Start()
+        private void Awake()
         {
             _logsList = _document.rootVisualElement.Q<ListView>();
             
