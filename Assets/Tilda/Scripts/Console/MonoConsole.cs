@@ -21,7 +21,6 @@ namespace Tilda
         private void Update()
         {
             if (!Input.GetKeyDown(_onOffKey)) return;
-            UnityEngine.Debug.Log($"Switch");
             _console.Enabled = !_console.Enabled;
         }
     }
