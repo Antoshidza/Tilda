@@ -75,7 +75,7 @@ namespace Tilda
             UpdateInput();
 
             // prevent losing focus when pressing anything
-            if (Input.anyKey)
+            if (CheckAnyKey())
                 _inputField.Focus();
             
             UpdateApplySuggestion();
@@ -91,8 +91,7 @@ namespace Tilda
 
         private void UpdateInput()
         {
-            if (!Input.GetKeyUp(KeyCode.Return) || _inputField.value == string.Empty) return;
-            // LogInternal(_inputField.value, true);
+            if (!CheckGetKeyUp(KeyCode.Return) || _inputField.value == string.Empty) return;
             _submitted.Add(_inputField.value);
             InputSubmitted?.Invoke(_inputField.value);
         }
@@ -100,12 +99,12 @@ namespace Tilda
         private void UpdateSubmitRestore()
         {
             if (_submitted.Count <= 0 || _suggestions.Count > 0) return;
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (CheckGetKeyDown(KeyCode.UpArrow))
             {
                 _restorePos = (_restorePos + 1) % _submitted.Count;
                 _inputField.value = _submitted[^(_restorePos + 1)];
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (CheckGetKeyDown(KeyCode.DownArrow))
             {
                 _restorePos = (_restorePos - 1 + _submitted.Count) % _submitted.Count;
                 _inputField.value = _submitted[^(_restorePos + 1)];
@@ -116,19 +115,19 @@ namespace Tilda
 
         private void UpdateApplySuggestion()
         {
-            if(!Input.GetKeyDown(KeyCode.Tab) || _suggestions.Count == 0) return;
+            if(!CheckGetKeyDown(KeyCode.Tab) || _suggestions.Count == 0) return;
             _inputField.value = _suggestions[_suggestionsPos];
         }
 
         private void UpdateSuggestionSelection()
         {
             if(_suggestions.Count == 0) return;
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (CheckGetKeyDown(KeyCode.UpArrow))
             {
                 _suggestionsPos = (_suggestionsPos + 1) % _suggestions.Count;
                 SelectSuggestion();
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (CheckGetKeyDown(KeyCode.DownArrow))
             {
                 _suggestionsPos = (_suggestionsPos - 1 + _suggestions.Count) % _suggestions.Count;
                 SelectSuggestion();
@@ -151,6 +150,47 @@ namespace Tilda
             
             if(submitted)
                 _logsList.ScrollToItem(_logs.Count - 1);
+        }
+
+        private bool CheckAnyKey()
+        {
+#if ENABLE_INPUT_SYSTEM
+            return UnityEngine.InputSystem.Keyboard.current.anyKey.wasPressedThisFrame;
+#else
+            return Input.anyKey;
+#endif
+        }
+
+        private bool CheckGetKeyUp(KeyCode key)
+        {
+#if ENABLE_INPUT_SYSTEM
+            switch (key)
+            {
+                case KeyCode.Return:
+                    return UnityEngine.InputSystem.Keyboard.current.enterKey.wasReleasedThisFrame; 
+            }
+            return false;
+#else
+            return Input.GetButtonUp(key);
+#endif
+        }
+        
+        private bool CheckGetKeyDown(KeyCode key)
+        {
+#if ENABLE_INPUT_SYSTEM
+            switch (key)
+            {
+                case KeyCode.UpArrow:
+                    return UnityEngine.InputSystem.Keyboard.current.upArrowKey.wasPressedThisFrame;
+                case KeyCode.DownArrow:
+                    return UnityEngine.InputSystem.Keyboard.current.downArrowKey.wasPressedThisFrame;
+                case KeyCode.Tab:
+                    return UnityEngine.InputSystem.Keyboard.current.tabKey.wasPressedThisFrame;
+            }
+            return false;
+#else
+            return Input.GetButtonDown(key);
+#endif
         }
 
         public void Log(string message) => LogInternal(message);

@@ -2,7 +2,8 @@
     "name": "Tilda.Console",
     "rootNamespace": "",
     "references": [
-        "GUID:0f7b52b5503ba004393a5d80e01c577a"
+        "GUID:0f7b52b5503ba004393a5d80e01c577a",
+        "GUID:75469ad4d38634e559750d17036d5f7c"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
