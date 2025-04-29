@@ -16,6 +16,7 @@ namespace Tilda
             {
                 Enabled = _showAtStart
             };
+            _view.Initialize();
         }
 
         private void Update()

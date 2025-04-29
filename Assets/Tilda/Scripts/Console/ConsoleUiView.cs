@@ -19,6 +19,7 @@ namespace Tilda
         private readonly List<string> _logs = new();
         private readonly List<string> _submitted = new();
         private readonly List<string> _suggestions = new();
+        private bool _initialized;
         private int _restorePos;
         private int _suggestionsPos;
 
@@ -32,8 +33,10 @@ namespace Tilda
 
         public event Action<string> InputSubmitted;
 
-        private void Awake()
+        public void Initialize()
         {
+            _initialized = true;
+            
             _logsList = _document.rootVisualElement.Q<ListView>();
             
             _inputField = _document.rootVisualElement.Q<TextField>(); 
@@ -72,6 +75,8 @@ namespace Tilda
 
         private void Update()
         {
+            if(!_initialized) return;
+            
             UpdateInput();
 
             // prevent losing focus when pressing anything
