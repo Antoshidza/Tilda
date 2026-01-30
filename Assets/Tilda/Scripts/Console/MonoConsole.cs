@@ -6,6 +6,7 @@ namespace Tilda
     {
         [SerializeField] private ConsoleUiView _view;
         [SerializeField] private bool _showAtStart;
+        [SerializeField] private bool _inputButtonIsVisible;
         [SerializeField] private KeyCode _onOffKey;
 
         private Console _console;
@@ -17,6 +18,7 @@ namespace Tilda
                 Enabled = _showAtStart
             };
             _view.Initialize();
+            _view.IsInputButtonDisplayed = _inputButtonIsVisible;
         }
 
         private void Update()

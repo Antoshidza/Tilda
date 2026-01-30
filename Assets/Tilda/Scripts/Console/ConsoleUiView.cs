@@ -16,6 +16,7 @@ namespace Tilda
         private ListView _logsList;
         private TextField _inputField;
         private VisualElement _suggestionsRoot;
+        private Button _inputButton;
         private readonly List<string> _logs = new();
         private readonly List<string> _submitted = new();
         private readonly List<string> _suggestions = new();
@@ -27,8 +28,14 @@ namespace Tilda
 
         public bool IsVisible
         {
-            get => _document.rootVisualElement.visible;
-            set => _document.rootVisualElement.visible = value;
+            get => _document.rootVisualElement.style.display.value == DisplayStyle.Flex;
+            set => _document.rootVisualElement.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
+        }
+
+        public bool IsInputButtonDisplayed
+        {
+            get => _inputButton.style.display.value == DisplayStyle.Flex;
+            set => _inputButton.style.display = value ? DisplayStyle.Flex : DisplayStyle.None;
         }
 
         public event Action<string> InputSubmitted;
@@ -71,6 +78,13 @@ namespace Tilda
             _logsList.Q<ScrollView>().verticalScroller.value = _logsList.Q<ScrollView>().verticalScroller.highValue;
 
             _suggestionsRoot = _document.rootVisualElement.Q("suggestions");
+
+            _inputButton = _document.rootVisualElement.Q<Button>("InputButton");
+            _inputButton.clicked += () => 
+            {
+                _submitted.Add(_inputField.value);
+                InputSubmitted?.Invoke(_inputField.value);
+            };
         }
 
         private void Update()
